@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/main_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Main Page"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/formulir_keluhan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Formulir Keluhan"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/profil_pengguna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profil Pengguna"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/detail_laporan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detail Laporan"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/laporan_untuk_pemerintah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Laporan untuk Pemerintah"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/registrasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrasi"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"/>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
