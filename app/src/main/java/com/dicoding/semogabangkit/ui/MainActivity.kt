@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.dicoding.semogabangkit.R
 import com.dicoding.semogabangkit.databinding.ActivityMainBinding
-import com.dicoding.semogabangkit.ui.mainpage.MainPageActivity
+import com.dicoding.semogabangkit.ui.main_page.MainPageActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         binding.mainPage.setOnClickListener(this)
+        binding.formulirKeluhan.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {

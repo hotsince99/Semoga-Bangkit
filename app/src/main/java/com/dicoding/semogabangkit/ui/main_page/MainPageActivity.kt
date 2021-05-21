@@ -1,11 +1,9 @@
-package com.dicoding.semogabangkit.ui.mainpage
+package com.dicoding.semogabangkit.ui.main_page
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.semogabangkit.R
 import com.dicoding.semogabangkit.data.ReportEntity
 import com.dicoding.semogabangkit.databinding.ActivityMainPageBinding
 import com.dicoding.semogabangkit.utils.DummyReports

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SemogaBangkit">
         <activity
-            android:name=".ui.mainpage.MainPageActivity"
+            android:name=".ui.main_page.MainPageActivity"
             android:label="@string/title_activity_main_page"
             android:theme="@style/Theme.SemogaBangkit.NoActionBar"></activity>
         <activity android:name=".ui.MainActivity">

@@ -1,4 +1,4 @@
-package com.dicoding.semogabangkit.ui.mainpage
+package com.dicoding.semogabangkit.ui.main_page
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
