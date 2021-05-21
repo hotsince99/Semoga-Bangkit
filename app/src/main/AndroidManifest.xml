@@ -3,16 +3,20 @@
     package="com.dicoding.semogabangkit">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SemogaBangkit">
         <activity
+            android:name=".ui.formulir_keluhan.FormActivity"
+            android:label="@string/title_activity_form"
+            android:theme="@style/Theme.SemogaBangkit.NoActionBar" />
+        <activity
             android:name=".ui.main_page.MainPageActivity"
             android:label="@string/title_activity_main_page"
-            android:theme="@style/Theme.SemogaBangkit.NoActionBar"></activity>
+            android:theme="@style/Theme.SemogaBangkit.NoActionBar" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

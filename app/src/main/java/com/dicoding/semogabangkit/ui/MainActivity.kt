@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.dicoding.semogabangkit.R
 import com.dicoding.semogabangkit.databinding.ActivityMainBinding
+import com.dicoding.semogabangkit.ui.formulir_keluhan.FormActivity
 import com.dicoding.semogabangkit.ui.main_page.MainPageActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -29,7 +30,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.formulir_keluhan -> {
-
+                val intent = Intent(this@MainActivity, FormActivity::class.java)
+                startActivity(intent)
             }
 
             R.id.profil_pengguna -> {
