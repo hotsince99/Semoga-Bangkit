@@ -1,11 +1,14 @@
-package com.dicoding.semogabangkit.ui
+package com.dicoding.semogabangkit.ui.mainpage
 
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.semogabangkit.R
+import com.dicoding.semogabangkit.data.ReportEntity
 import com.dicoding.semogabangkit.databinding.ActivityMainPageBinding
+import com.dicoding.semogabangkit.utils.DummyReports
 
 class MainPageActivity : AppCompatActivity() {
 
@@ -18,8 +21,16 @@ class MainPageActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Buat Laporan", Snackbar.LENGTH_LONG)
-                    .setAction("Buat Laporan", null).show()
+            Snackbar.make(view, "Buat Laporan", Snackbar.LENGTH_LONG).show()
         }
+
+        showRecyclerCardView()
+
+    }
+
+    private fun showRecyclerCardView() {
+        binding.rvReports.layoutManager = LinearLayoutManager(this)
+        val adapter = ReportListAdapter(DummyReports.generate() as ArrayList<ReportEntity>)
+        binding.rvReports.adapter = adapter
     }
 }

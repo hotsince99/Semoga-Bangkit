@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.dicoding.semogabangkit.R
 import com.dicoding.semogabangkit.databinding.ActivityMainBinding
+import com.dicoding.semogabangkit.ui.mainpage.MainPageActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
