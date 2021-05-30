@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SemogaBangkit">
         <activity
+            android:name=".ui.detail_laporan.ReportDetailActivity"
+            android:label="@string/title_activity_report_detail"
+            android:theme="@style/Theme.SemogaBangkit.NoActionBar" />
+        <activity
             android:name=".ui.formulir_keluhan.FormActivity"
             android:label="@string/title_activity_form"
             android:theme="@style/Theme.SemogaBangkit.NoActionBar" />
