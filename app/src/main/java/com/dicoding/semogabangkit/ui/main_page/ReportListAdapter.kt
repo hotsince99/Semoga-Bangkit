@@ -1,4 +1,4 @@
-package com.dicoding.semogabangkit.ui.mainpage
+package com.dicoding.semogabangkit.ui.main_page
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -15,10 +15,11 @@ class ReportListAdapter(private val reports: ArrayList<ReportEntity>) : Recycler
             binding.apply {
                 tvTitle.text = report.title
                 tvCategory.text = when (report.tag) {
-                    1 -> "Infrastruktur"
+                    1 -> "Pembangunan"
                     2 -> "Sosial"
                     3 -> "Kesehatan"
-                    4 -> "Perikanan"
+                    4 -> "Ekonomi"
+                    5 -> "Transportasi"
                     else -> "no tag"
                 }
 
@@ -27,6 +28,7 @@ class ReportListAdapter(private val reports: ArrayList<ReportEntity>) : Recycler
                     2 -> R.drawable.ic_tag_green
                     3 -> R.drawable.ic_tag_red
                     4 -> R.drawable.ic_tag_blue
+                    5 -> R.drawable.ic_tag_purple
                     else -> R.drawable.ic_tag
                 }.let { imgTag.setBackgroundResource(it) }
 
