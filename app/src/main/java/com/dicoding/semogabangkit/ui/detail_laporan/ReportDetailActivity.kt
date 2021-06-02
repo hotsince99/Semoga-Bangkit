@@ -38,27 +38,20 @@ class ReportDetailActivity : AppCompatActivity() {
 
         binding.apply {
             Glide.with(applicationContext)
-                    .load(report.imagePath.toInt())
+                    .load(report.imagePath)
                     .into(image)
 
             title.text = report.title
             description.text = report.description
 
-            category.text = when (report.tag) {
-                1 -> "Pembangunan"
-                2 -> "Sosial"
-                3 -> "Kesehatan"
-                4 -> "Ekonomi"
-                5 -> "Transportasi"
-                else -> "no tag"
-            }
+            category.text = report.tag
 
             when (report.tag) {
-                1 -> R.drawable.ic_tag_yellow
-                2 -> R.drawable.ic_tag_green
-                3 -> R.drawable.ic_tag_red
-                4 -> R.drawable.ic_tag_blue
-                5 -> R.drawable.ic_tag_purple
+                "Pembangunan" -> R.drawable.ic_tag_yellow
+                "Sosial" -> R.drawable.ic_tag_green
+                "Kesehatan" -> R.drawable.ic_tag_red
+                "Ekonomi" -> R.drawable.ic_tag_blue
+                "Transportasi" -> R.drawable.ic_tag_purple
                 else -> R.drawable.ic_tag
             }.let { imgTag.setBackgroundResource(it) }
 
