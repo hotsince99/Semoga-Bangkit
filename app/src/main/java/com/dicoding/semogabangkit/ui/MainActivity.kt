@@ -9,6 +9,8 @@ import com.dicoding.semogabangkit.databinding.ActivityMainBinding
 import com.dicoding.semogabangkit.ui.detail_laporan.ReportDetailActivity
 import com.dicoding.semogabangkit.ui.formulir_keluhan.FormActivity
 import com.dicoding.semogabangkit.ui.main_page.MainPageActivity
+import com.dicoding.semogabangkit.ui.profile_pengguna.ProfileActivity
+import com.dicoding.semogabangkit.ui.rangkuman_pemerintah.SummaryActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -41,7 +43,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.profil_pengguna -> {
-
+                val intent = Intent(this, ProfileActivity::class.java)
+                intent.putExtra(ReportDetailActivity.EXTRA_ID, 1)
+                startActivity(intent)
             }
 
             R.id.detail_laporan -> {
@@ -51,7 +55,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.laporan_untuk_pemerintah -> {
-
+                val intent = Intent(this, SummaryActivity::class.java)
+                startActivity(intent)
             }
 
             R.id.registrasi -> {

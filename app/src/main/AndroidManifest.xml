@@ -2,13 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dicoding.semogabangkit">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SemogaBangkit">
+        android:theme="@style/Theme.SemogaBangkit"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.profile_pengguna.ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.SemogaBangkit.NoActionBar"></activity>
+        <activity
+            android:name=".ui.rangkuman_pemerintah.SummaryActivity"
+            android:label="@string/title_activity_summary"
+            android:theme="@style/Theme.SemogaBangkit.NoActionBar" />
         <activity
             android:name=".ui.detail_laporan.ReportDetailActivity"
             android:label="@string/title_activity_report_detail"

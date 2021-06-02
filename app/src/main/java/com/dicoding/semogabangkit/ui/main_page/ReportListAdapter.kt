@@ -5,30 +5,31 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.semogabangkit.R
-import com.dicoding.semogabangkit.data.ReportEntity
+import com.dicoding.semogabangkit.data.entity.ReportEntity
 import com.dicoding.semogabangkit.databinding.ItemCardviewReportBinding
 
-class ReportListAdapter(private val reports: ArrayList<ReportEntity>) : RecyclerView.Adapter<ReportListAdapter.ViewHolder>() {
+class ReportListAdapter() : RecyclerView.Adapter<ReportListAdapter.ViewHolder>() {
+
+    private var listReports = ArrayList<ReportEntity>()
+
+    fun setCourses(courses: List<ReportEntity>?) {
+        if (courses == null) return
+        this.listReports.clear()
+        this.listReports.addAll(courses)
+    }
 
     inner class ViewHolder (private val binding: ItemCardviewReportBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(report: ReportEntity) {
             binding.apply {
                 tvTitle.text = report.title
-                tvCategory.text = when (report.tag) {
-                    1 -> "Pembangunan"
-                    2 -> "Sosial"
-                    3 -> "Kesehatan"
-                    4 -> "Ekonomi"
-                    5 -> "Transportasi"
-                    else -> "no tag"
-                }
+                tvCategory.text = report.tag
 
                 when (report.tag) {
-                    1 -> R.drawable.ic_tag_yellow
-                    2 -> R.drawable.ic_tag_green
-                    3 -> R.drawable.ic_tag_red
-                    4 -> R.drawable.ic_tag_blue
-                    5 -> R.drawable.ic_tag_purple
+                    "Pembangunan" -> R.drawable.ic_tag_yellow
+                    "Sosial" -> R.drawable.ic_tag_green
+                    "Kesehatan" -> R.drawable.ic_tag_red
+                    "Ekonomi" -> R.drawable.ic_tag_blue
+                    "Transportasi" -> R.drawable.ic_tag_purple
                     else -> R.drawable.ic_tag
                 }.let { imgTag.setBackgroundResource(it) }
 
@@ -40,7 +41,7 @@ class ReportListAdapter(private val reports: ArrayList<ReportEntity>) : Recycler
                 }
 
                 Glide.with(itemView.context)
-                    .load(report.imagePath.toInt())
+                    .load(report.imagePath)
                     .into(imgPhoto)
 
             }
@@ -53,11 +54,11 @@ class ReportListAdapter(private val reports: ArrayList<ReportEntity>) : Recycler
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(reports[position])
+        holder.bind(listReports[position])
     }
 
     override fun getItemCount(): Int {
-        return reports.size
+        return listReports.size
     }
 
 
