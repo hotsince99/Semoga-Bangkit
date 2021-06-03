@@ -2,10 +2,12 @@ package com.dicoding.semogabangkit.data.source.remote
 
 import android.util.Log
 import com.dicoding.semogabangkit.data.source.remote.response.ReportResponse
+import com.dicoding.semogabangkit.data.source.remote.response.SuccessResponse
 import com.dicoding.semogabangkit.data.source.remote.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Field
 
 class RemoteDataSource {
 
@@ -37,15 +39,39 @@ class RemoteDataSource {
             override fun onFailure(call: Call<List<ReportResponse>>, t: Throwable) {
                 Log.e(TAG, t.message.toString())
             }
+        })
+    }
+
+    fun uploadReport(callback: UploadReportCallback, judul: String, deskripsi: String, encodedImage: String) {
+
+        val client = ApiConfig.getApiService().uploadReport(judul, deskripsi, encodedImage)
+        client.enqueue(object : Callback<SuccessResponse> {
+            override fun onResponse(
+                call: Call<SuccessResponse>,
+                response: Response<SuccessResponse>
+            ) {
+                if (response.isSuccessful) {
+                    callback.onReportSent(response.body()!!)
+                    Log.e(TAG, response.message())
+                } else {
+                    Log.e(TAG, response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<SuccessResponse>, t: Throwable) {
+                Log.e(TAG, t.message.toString())
+            }
 
         })
 
-        //Log.d("JJ RDS", resultReport[0].judul)
-        //Log.d("JJ RDS", resultReport.size.toString())
-
+        return
     }
 
     interface LoadAllReportsCallback {
         fun onAllReportsReceived(reportResponses: List<ReportResponse>)
+    }
+
+    interface UploadReportCallback {
+        fun onReportSent(successResponse: SuccessResponse)
     }
 }

@@ -7,6 +7,7 @@ import com.dicoding.semogabangkit.data.entity.ReportEntity
 import com.dicoding.semogabangkit.data.source.remote.RemoteDataSource
 import com.dicoding.semogabangkit.data.source.remote.RemoteDataSource.*
 import com.dicoding.semogabangkit.data.source.remote.response.ReportResponse
+import com.dicoding.semogabangkit.data.source.remote.response.SuccessResponse
 
 class BangkitRepository private constructor (private val remoteDataSource: RemoteDataSource) : BangkitDataSource {
 
@@ -31,14 +32,21 @@ class BangkitRepository private constructor (private val remoteDataSource: Remot
                 for (response in reportResponses) {
                     responseList.add(convertReportResponseToEntity(response))
                 }
+                reportResults.postValue(responseList)
             }
-
         })
-
-        val stringgg: String = reportResults.value?.get(0)?.title ?: "ga ada data"
-        Log.d("JJ Bangkit Repository", stringgg)
-
         return reportResults
+    }
+
+    override fun uploadReport(judul: String, deskripsi: String, encodedImage: String): LiveData<String> {
+        val result = MutableLiveData<String>()
+
+        remoteDataSource.uploadReport(object : UploadReportCallback {
+            override fun onReportSent(successResponse: SuccessResponse) {
+                result.postValue(successResponse.status)
+            }
+        }, judul, deskripsi, encodedImage)
+        return result
     }
 
     private fun convertReportResponseToEntity(response: ReportResponse): ReportEntity {
@@ -46,10 +54,10 @@ class BangkitRepository private constructor (private val remoteDataSource: Remot
             response.id,
             response.judul,
             response.tags,
-            "lorem ipsum dolor sit amet",
+            response.desc,
             response.image,
             response.votes,
-            response.location
+            "Surabaya"
         )
     }
 

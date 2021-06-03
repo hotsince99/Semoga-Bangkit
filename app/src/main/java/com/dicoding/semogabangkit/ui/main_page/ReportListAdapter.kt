@@ -18,6 +18,16 @@ class ReportListAdapter() : RecyclerView.Adapter<ReportListAdapter.ViewHolder>()
         this.listReports.addAll(courses)
     }
 
+    interface Callback {
+        fun onItemClick(item: ReportEntity)
+    }
+
+    private var callback: Callback? = null
+
+    fun setCallback(callback: Callback) {
+        this.callback = callback
+    }
+
     inner class ViewHolder (private val binding: ItemCardviewReportBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(report: ReportEntity) {
             binding.apply {
@@ -43,6 +53,10 @@ class ReportListAdapter() : RecyclerView.Adapter<ReportListAdapter.ViewHolder>()
                 Glide.with(itemView.context)
                     .load(report.imagePath)
                     .into(imgPhoto)
+
+                root.setOnClickListener {
+                    callback?.onItemClick(report)
+                }
 
             }
         }

@@ -6,10 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class ReportResponse(
 
     @field:SerializedName("image")
-    val image: String? = null,
-
-    @field:SerializedName("location")
-    val location: String,
+    val image: String,
 
     @field:SerializedName("votes")
     val votes: Int,
@@ -17,8 +14,8 @@ data class ReportResponse(
     @field:SerializedName("id")
     val id: Int,
 
-    @field:SerializedName("deskripsi")
-    val deskripsi: String? = null,
+    @field:SerializedName("desc")
+    val desc: String,
 
     @field:SerializedName("time")
     val time: String,

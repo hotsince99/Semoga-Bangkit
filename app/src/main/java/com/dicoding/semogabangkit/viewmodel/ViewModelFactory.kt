@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.semogabangkit.data.BangkitRepository
 import com.dicoding.semogabangkit.di.Injection
+import com.dicoding.semogabangkit.ui.formulir_keluhan.FormViewModel
 import com.dicoding.semogabangkit.ui.main_page.MainPageViewModel
 
 class ViewModelFactory private constructor(private val bangkitRepository: BangkitRepository) : ViewModelProvider.NewInstanceFactory() {
@@ -25,6 +26,9 @@ class ViewModelFactory private constructor(private val bangkitRepository: Bangki
         when {
             modelClass.isAssignableFrom(MainPageViewModel::class.java) -> {
                 return MainPageViewModel(bangkitRepository) as T
+            }
+            modelClass.isAssignableFrom(FormViewModel::class.java) -> {
+                return FormViewModel(bangkitRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

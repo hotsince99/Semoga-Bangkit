@@ -43,15 +43,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.profil_pengguna -> {
-                val intent = Intent(this, ProfileActivity::class.java)
+                /*val intent = Intent(this, ProfileActivity::class.java)
                 intent.putExtra(ReportDetailActivity.EXTRA_ID, 1)
-                startActivity(intent)
+                startActivity(intent)*/
             }
 
             R.id.detail_laporan -> {
-                val intent = Intent(this, ReportDetailActivity::class.java)
+                /*val intent = Intent(this, ReportDetailActivity::class.java)
                 intent.putExtra(ReportDetailActivity.EXTRA_ID, 1)
-                startActivity(intent)
+                startActivity(intent)*/
             }
 
             R.id.laporan_untuk_pemerintah -> {
