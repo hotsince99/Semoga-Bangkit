@@ -17,9 +17,17 @@ interface ApiService {
     @POST("upload/")
     @FormUrlEncoded
     fun uploadReport(
-        @Field("judul") judul: String,
-        @Field("desc") desc: String,
-        @Field("image") encodedImage: String
+            @Field("judul") judul: String,
+            @Field("desc") desc: String,
+            @Field("image") encodedImage: String
+    ): Call<SuccessResponse>
+
+    @POST("upvote/")
+    @FormUrlEncoded
+    fun upvoteThisReport(
+            @Field("judul") judul: String,
+            @Field("uuid") uuid: String,
+            @Field("vote") vote: Boolean
     ): Call<SuccessResponse>
 
     /*@GET("3/trending/movie/week?api_key=${BuildConfig.TMDB_API}")

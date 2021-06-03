@@ -57,7 +57,7 @@ class BangkitRepository private constructor (private val remoteDataSource: Remot
             response.desc,
             response.image,
             response.votes,
-            "Surabaya"
+            response.time
         )
     }
 

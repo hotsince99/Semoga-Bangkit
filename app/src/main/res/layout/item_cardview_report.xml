@@ -19,7 +19,7 @@
 
         <ImageView
             android:id="@+id/img_photo"
-            android:layout_width="120dp"
+            android:layout_width="180dp"
             android:layout_height="160dp"
             android:scaleType="centerCrop"
             tools:src="@tools:sample/avatars"
@@ -60,17 +60,24 @@
             android:layout_marginLeft="4dp"/>
 
         <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="17-08-2021"
+            card_view:layout_constraintRight_toRightOf="@id/img_photo"
+            card_view:layout_constraintBottom_toBottomOf="@id/tv_category"/>
+
+        <TextView
             android:id="@+id/tv_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/btn_set_favorite"
-            android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
             android:ellipsize="end"
-            android:maxLines="5"
+            android:maxLines="7"
             card_view:layout_constraintEnd_toStartOf="@+id/img_photo"
             card_view:layout_constraintStart_toStartOf="@+id/tv_title"
-            card_view:layout_constraintTop_toBottomOf="@id/img_tag"
+            card_view:layout_constraintTop_toTopOf="@id/img_photo"
             tools:text="@string/lorem_ipsum" />
 
         <Button

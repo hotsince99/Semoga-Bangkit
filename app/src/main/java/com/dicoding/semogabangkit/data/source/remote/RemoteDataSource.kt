@@ -52,7 +52,8 @@ class RemoteDataSource {
             ) {
                 if (response.isSuccessful) {
                     callback.onReportSent(response.body()!!)
-                    Log.e(TAG, response.message())
+                    Log.d(TAG, response.message())
+                    Log.d(TAG, "Sudah Berhasil dummyyyyyyyy")
                 } else {
                     Log.e(TAG, response.message())
                 }

@@ -7,6 +7,10 @@ import com.bumptech.glide.Glide
 import com.dicoding.semogabangkit.R
 import com.dicoding.semogabangkit.data.entity.ReportEntity
 import com.dicoding.semogabangkit.databinding.ItemCardviewReportBinding
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ReportListAdapter() : RecyclerView.Adapter<ReportListAdapter.ViewHolder>() {
 
@@ -33,6 +37,7 @@ class ReportListAdapter() : RecyclerView.Adapter<ReportListAdapter.ViewHolder>()
             binding.apply {
                 tvTitle.text = report.title
                 tvCategory.text = report.tag
+                tvDate.text = getDateTime(report.time)
 
                 when (report.tag) {
                     "Pembangunan" -> R.drawable.ic_tag_yellow
@@ -46,6 +51,7 @@ class ReportListAdapter() : RecyclerView.Adapter<ReportListAdapter.ViewHolder>()
                 tvDescription.text = report.description
 
                 btnSetFavorite.text = when (report.upVote) {
+                    0 -> "0 Upvote"
                     1 -> "1 Upvote"
                     else -> "${report.upVote} Upvotes"
                 }
@@ -60,6 +66,21 @@ class ReportListAdapter() : RecyclerView.Adapter<ReportListAdapter.ViewHolder>()
 
             }
         }
+    }
+
+    private fun getDateTime(s: String?): String? {
+        lateinit var dates: String
+        try {
+            val f: DateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ")
+            val d: Date = f.parse(s)
+            val date: DateFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale("id"))
+            val time: DateFormat = SimpleDateFormat("hh:mm a")
+            dates = "${time.format(d)} - ${date.format(d)}"
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return dates
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
