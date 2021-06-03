@@ -1,13 +1,26 @@
 package com.dicoding.semogabangkit.data.source.remote.retrofit
 
 import com.dicoding.semogabangkit.data.source.remote.response.ReportResponse
+import com.dicoding.semogabangkit.data.source.remote.response.SuccessResponse
 import retrofit2.Call
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.POST
+
 
 interface ApiService {
 
     @GET("judul/?format=json")
     fun loadAllReports(): Call<List<ReportResponse>>
+
+    @POST("upload/")
+    @FormUrlEncoded
+    fun uploadReport(
+        @Field("judul") judul: String,
+        @Field("desc") desc: String,
+        @Field("image") encodedImage: String
+    ): Call<SuccessResponse>
 
     /*@GET("3/trending/movie/week?api_key=${BuildConfig.TMDB_API}")
     fun getListMovies(): Call<MovieListResponse>*/
