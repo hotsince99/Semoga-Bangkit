@@ -53,7 +53,6 @@ class RemoteDataSource {
                 if (response.isSuccessful) {
                     callback.onReportSent(response.body()!!)
                     Log.d(TAG, response.message())
-                    Log.d(TAG, "Sudah Berhasil dummyyyyyyyy")
                 } else {
                     Log.e(TAG, response.message())
                 }
@@ -68,11 +67,35 @@ class RemoteDataSource {
         return
     }
 
+    fun upvoteReport(callback: UpvoteReportCallback, id: Int, uuid: String, votes: Boolean) {
+
+        val client = ApiConfig.getApiService().upvoteThisReport(id, uuid, votes)
+        client.enqueue(object : Callback<SuccessResponse> {
+            override fun onResponse(call: Call<SuccessResponse>, response: Response<SuccessResponse>) {
+                if (response.isSuccessful) {
+                    callback.onUpvoteSent(response.body()!!)
+                    Log.d(TAG, response.message())
+                } else {
+                    Log.e(TAG, response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<SuccessResponse>, t: Throwable) {
+                Log.e(TAG, t.message.toString())
+            }
+
+        })
+    }
+
     interface LoadAllReportsCallback {
         fun onAllReportsReceived(reportResponses: List<ReportResponse>)
     }
 
     interface UploadReportCallback {
         fun onReportSent(successResponse: SuccessResponse)
+    }
+
+    interface UpvoteReportCallback {
+        fun onUpvoteSent(successResponse: SuccessResponse)
     }
 }

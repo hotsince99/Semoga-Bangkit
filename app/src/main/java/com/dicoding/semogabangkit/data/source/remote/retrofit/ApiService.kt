@@ -25,20 +25,9 @@ interface ApiService {
     @POST("upvote/")
     @FormUrlEncoded
     fun upvoteThisReport(
-            @Field("judul") judul: String,
+            @Field("id") id: Int,
             @Field("uuid") uuid: String,
-            @Field("vote") vote: Boolean
+            @Field("votes") votes: Boolean
     ): Call<SuccessResponse>
-
-    /*@GET("3/trending/movie/week?api_key=${BuildConfig.TMDB_API}")
-    fun getListMovies(): Call<MovieListResponse>*/
-
-
-    /*@GET("3/trending/tv/week?api_key=${BuildConfig.TMDB_API}")
-    fun getListTv(): Call<TvListResponse>*/
-
-
-    /*@GET("3/tv/{id}?api_key=${BuildConfig.TMDB_API}")
-    fun getTvDetail(@Path("id") id: String): Call<TvDetailResponse>*/
 
 }

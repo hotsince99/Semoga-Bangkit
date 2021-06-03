@@ -1,7 +1,10 @@
 package com.dicoding.semogabangkit.ui.rangkuman_pemerintah
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.anychart.AnyChart
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
@@ -10,14 +13,24 @@ import com.anychart.enums.Anchor
 import com.anychart.enums.HoverMode
 import com.anychart.enums.Position
 import com.anychart.enums.TooltipPositionMode
+import com.dicoding.semogabangkit.data.entity.ReportEntity
 import com.dicoding.semogabangkit.databinding.ActivitySummaryBinding
+import com.dicoding.semogabangkit.ui.main_page.MainPageViewModel
 import com.dicoding.semogabangkit.utils.Category
+import com.dicoding.semogabangkit.viewmodel.ViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
 
 class SummaryActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySummaryBinding
+    private lateinit var viewModel:SummaryViewModel
+
+    private var pembangunan = 0
+    private var sosial = 0
+    private var kesehatan = 0
+    private var ekonomi = 0
+    private var transportasi = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,21 +38,35 @@ class SummaryActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        showProgressBar()
 
+        val factory = ViewModelFactory.getInstance()
+        viewModel = ViewModelProvider(this, factory)[SummaryViewModel::class.java]
+
+        viewModel.getAllReports().observe(this, { reports ->
+            countReportsByCategories(reports)
+            hideProgressBar()
+            showChart()
+        })
+
+        Log.d("SummaryCount", pembangunan.toString())
+        Log.d("SummaryCount", sosial.toString())
+        Log.d("SummaryCount", kesehatan.toString())
+        Log.d("SummaryCount", ekonomi.toString())
+        Log.d("SummaryCount", transportasi.toString())
+    }
+
+    private fun showChart() {
         val anyChartView = binding.anyChartView
 
         val cartesian = AnyChart.column()
 
         val data: MutableList<DataEntry> = ArrayList()
-        data.add(ValueDataEntry(Category.PEMBANGUNAN, 1000))
-        data.add(ValueDataEntry(Category.SOSIAL, 2000))
-        data.add(ValueDataEntry(Category.KESEHATAN, 3000))
-        data.add(ValueDataEntry(Category.EKONOMI, 4000))
-        data.add(ValueDataEntry(Category.TRANPORTASI, 5000))
+        data.add(ValueDataEntry(Category.PEMBANGUNAN, pembangunan))
+        data.add(ValueDataEntry(Category.SOSIAL, sosial))
+        data.add(ValueDataEntry(Category.KESEHATAN, kesehatan))
+        data.add(ValueDataEntry(Category.EKONOMI, ekonomi))
+        data.add(ValueDataEntry(Category.TRANPORTASI, transportasi))
 
 
         val column: Column = cartesian.column(data)
@@ -53,28 +80,42 @@ class SummaryActivity : AppCompatActivity() {
                 "return 'green';}");
 
         column.tooltip()
-            .titleFormat("{%X}")
-            .position(Position.CENTER_BOTTOM)
-            .anchor(Anchor.CENTER_BOTTOM)
-            .offsetX(0.0)
-            .offsetY(5.0)
-            .format("{%Value}{groupsSeparator:.}")
+                .titleFormat("{%X}")
+                .position(Position.CENTER_BOTTOM)
+                .anchor(Anchor.CENTER_BOTTOM)
+                .offsetX(0.0)
+                .offsetY(5.0)
+                .format("{%Value}{groupsSeparator:.}")
 
         cartesian.animation(true)
-        cartesian.title("Jumlah Upvote Laporan")
+        cartesian.title("Jumlah Laporan Per Kategori")
 
-        cartesian.yScale().minimum(0.0)
+        cartesian.yScale().minimum(0).ticks().allowFractional(false)
 
         cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator:.}")
 
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
         cartesian.interactivity().hoverMode(HoverMode.BY_X)
 
-        cartesian.xAxis(0).title("Laporan")
+        cartesian.xAxis(0).title("Laporan").labels().fontSize(10)
         cartesian.yAxis(0).title("Upvote")
 
-        cartesian
-
         anyChartView.setChart(cartesian)
+    }
+
+    private fun countReportsByCategories(reports: List<ReportEntity>) {
+        pembangunan = reports.filter { it.tag == Category.PEMBANGUNAN}.size
+        sosial = reports.filter { it.tag == Category.SOSIAL}.size
+        kesehatan = reports.filter { it.tag == Category.KESEHATAN}.size
+        ekonomi = reports.filter { it.tag == Category.EKONOMI}.size
+        transportasi = reports.filter { it.tag == Category.TRANPORTASI}.size
+    }
+
+    fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
     }
 }

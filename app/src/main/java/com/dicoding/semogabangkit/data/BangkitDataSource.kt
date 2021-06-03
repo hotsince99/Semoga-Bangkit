@@ -2,12 +2,13 @@ package com.dicoding.semogabangkit.data
 
 import androidx.lifecycle.LiveData
 import com.dicoding.semogabangkit.data.entity.ReportEntity
-import com.dicoding.semogabangkit.data.source.remote.response.ReportResponse
 
 interface BangkitDataSource {
 
     fun loadAllReports(): LiveData<List<ReportEntity>>
 
     fun uploadReport(judul: String, deskripsi: String, encodedImage: String): LiveData<String>
+
+    fun upvoteReport(id: Int, uuid: String, votes: Boolean): LiveData<String>
 
 }

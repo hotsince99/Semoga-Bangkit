@@ -13,5 +13,7 @@
     <color name="green_300">#81c784</color>
     <color name="blue_300">#64b5f6</color>
 
+    <color name="upvote_red">#f44336</color>
+
     <color name="grey">#6FB6B6B6</color>
 </resources>

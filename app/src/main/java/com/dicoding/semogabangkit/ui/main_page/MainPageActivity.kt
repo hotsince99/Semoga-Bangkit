@@ -17,6 +17,7 @@ import com.dicoding.semogabangkit.viewmodel.ViewModelFactory
 class MainPageActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainPageBinding
+    private lateinit var viewModel: MainPageViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,16 +27,17 @@ class MainPageActivity : AppCompatActivity() {
 
         showProgressBar()
 
-        val factory = ViewModelFactory.getInstance()
-        val viewModel = ViewModelProvider(this, factory)[MainPageViewModel::class.java]
-
         binding.fab.setOnClickListener {
             val intent = Intent(this, FormActivity::class.java)
             startActivity(intent)
         }
 
+        val factory = ViewModelFactory.getInstance()
+        viewModel = ViewModelProvider(this, factory)[MainPageViewModel::class.java]
+
         viewModel.getAllReports().observe(this, { reports ->
             showRecyclerCardView(reports)
+            hideProgressBar()
         })
 
 
