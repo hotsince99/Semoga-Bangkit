@@ -13,10 +13,6 @@
         android:theme="@style/Theme.SemogaBangkit"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.profile_pengguna.ProfileActivity"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/Theme.SemogaBangkit.NoActionBar"></activity>
-        <activity
             android:name=".ui.rangkuman_pemerintah.SummaryActivity"
             android:label="@string/title_activity_summary"
             android:theme="@style/Theme.SemogaBangkit.NoActionBar" />

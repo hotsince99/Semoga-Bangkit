@@ -11,7 +11,7 @@ data class ReportEntity(
     val description: String,
     val imagePath: String,
     val upVote: Int,
-    val location: String
+    val time: String
 ) : Parcelable
 
 /*val image: String? = null,

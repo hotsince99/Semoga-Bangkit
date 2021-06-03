@@ -1,9 +1,12 @@
 package com.dicoding.semogabangkit.ui.formulir_keluhan
 
+import android.R.attr
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
 import android.widget.Toast
@@ -53,10 +56,8 @@ class FormActivity : AppCompatActivity() {
             }
             btnImgChooseImage.setOnClickListener {
                 pickImageFromGallery()
-                setEncodedImage()
             }
         }
-
 
     }
 
@@ -70,26 +71,29 @@ class FormActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
             // do something here
+            val selectedfile: Uri = data?.data as Uri//The uri with the location of the file
+            val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedfile)
+            setEncodedImage(bitmap)
+
             binding.btnImgChooseImage.setImageURI(data?.data)
         }
     }
 
-    private fun convertChosenImageToBitmap(): Bitmap {
+    private fun setEncodedImage(bitmap: Bitmap) {
+        encodedImage = convertBitmapToBase64(bitmap)
+        imageIsChanged = true
+    }
+
+    /*private fun convertChosenImageToBitmap(): Bitmap {
         val drawable = binding.btnImgChooseImage.drawable as BitmapDrawable
         return drawable.bitmap
-    }
+    }*/
 
     private fun convertBitmapToBase64(bitmap: Bitmap): String {
         val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream)
         val image = stream.toByteArray()
         return Base64.encodeToString(image, Base64.DEFAULT)
-    }
-
-    private fun setEncodedImage() {
-        val bitmap = convertChosenImageToBitmap()
-        encodedImage = convertBitmapToBase64(bitmap)
-        imageIsChanged = true
     }
 
     private fun setJudulAndDeskripsi() {

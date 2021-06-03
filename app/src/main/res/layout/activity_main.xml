@@ -21,12 +21,6 @@
         android:text="Formulir Keluhan"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/profil_pengguna"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profil Pengguna"/>
-
-    <com.google.android.material.button.MaterialButton
         android:id="@+id/detail_laporan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,18 +31,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Laporan untuk Pemerintah"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/registrasi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Registrasi"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"/>
 
 
 

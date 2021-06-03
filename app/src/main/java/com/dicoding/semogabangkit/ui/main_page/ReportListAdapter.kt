@@ -7,6 +7,11 @@ import com.bumptech.glide.Glide
 import com.dicoding.semogabangkit.R
 import com.dicoding.semogabangkit.data.entity.ReportEntity
 import com.dicoding.semogabangkit.databinding.ItemCardviewReportBinding
+import com.dicoding.semogabangkit.utils.Category
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ReportListAdapter() : RecyclerView.Adapter<ReportListAdapter.ViewHolder>() {
 
@@ -33,19 +38,21 @@ class ReportListAdapter() : RecyclerView.Adapter<ReportListAdapter.ViewHolder>()
             binding.apply {
                 tvTitle.text = report.title
                 tvCategory.text = report.tag
+                tvDate.text = getDateTime(report.time)
 
                 when (report.tag) {
-                    "Pembangunan" -> R.drawable.ic_tag_yellow
-                    "Sosial" -> R.drawable.ic_tag_green
-                    "Kesehatan" -> R.drawable.ic_tag_red
-                    "Ekonomi" -> R.drawable.ic_tag_blue
-                    "Transportasi" -> R.drawable.ic_tag_purple
+                    Category.PEMBANGUNAN -> R.drawable.ic_tag_yellow
+                    Category.SOSIAL -> R.drawable.ic_tag_green
+                    Category.KESEHATAN -> R.drawable.ic_tag_red
+                    Category.EKONOMI -> R.drawable.ic_tag_blue
+                    Category.TRANPORTASI -> R.drawable.ic_tag_purple
                     else -> R.drawable.ic_tag
                 }.let { imgTag.setBackgroundResource(it) }
 
                 tvDescription.text = report.description
 
-                btnSetFavorite.text = when (report.upVote) {
+                tvFavorite.text = when (report.upVote) {
+                    0 -> "0 Upvote"
                     1 -> "1 Upvote"
                     else -> "${report.upVote} Upvotes"
                 }
@@ -60,6 +67,21 @@ class ReportListAdapter() : RecyclerView.Adapter<ReportListAdapter.ViewHolder>()
 
             }
         }
+    }
+
+    private fun getDateTime(s: String?): String? {
+        lateinit var dates: String
+        try {
+            val f: DateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ")
+            val d: Date = f.parse(s)
+            val date: DateFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale("id"))
+            val time: DateFormat = SimpleDateFormat("hh:mm a")
+            dates = "${date.format(d)} - ${time.format(d)} "
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return dates
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
