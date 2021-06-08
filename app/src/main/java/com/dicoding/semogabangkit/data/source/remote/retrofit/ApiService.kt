@@ -25,7 +25,7 @@ interface ApiService {
     @POST("upvote/")
     @FormUrlEncoded
     fun upvoteThisReport(
-            @Field("id") id: Int,
+            @Field("judul") judul: String,
             @Field("uuid") uuid: String,
             @Field("votes") votes: Boolean
     ): Call<SuccessResponse>

@@ -61,6 +61,11 @@ class FormActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        supportActionBar?.title = "Kirim Laporan"
+    }
+
     private fun pickImageFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
@@ -70,7 +75,7 @@ class FormActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
-            // do something here
+
             val selectedfile: Uri = data?.data as Uri//The uri with the location of the file
             val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedfile)
             setEncodedImage(bitmap)
@@ -84,14 +89,9 @@ class FormActivity : AppCompatActivity() {
         imageIsChanged = true
     }
 
-    /*private fun convertChosenImageToBitmap(): Bitmap {
-        val drawable = binding.btnImgChooseImage.drawable as BitmapDrawable
-        return drawable.bitmap
-    }*/
-
     private fun convertBitmapToBase64(bitmap: Bitmap): String {
         val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 60, stream)
         val image = stream.toByteArray()
         return Base64.encodeToString(image, Base64.DEFAULT)
     }

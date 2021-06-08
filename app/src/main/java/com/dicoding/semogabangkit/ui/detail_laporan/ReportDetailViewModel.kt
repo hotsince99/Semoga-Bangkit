@@ -6,7 +6,7 @@ import com.dicoding.semogabangkit.data.BangkitRepository
 
 class ReportDetailViewModel(private val bangkitRepository: BangkitRepository) : ViewModel() {
 
-    fun upvoteReport(id: Int, uuid: String, vote: Boolean)
-            : LiveData<String> = bangkitRepository.upvoteReport(id, uuid, vote)
+    fun upvoteReport(judul: String, uuid: String, vote: Boolean)
+            : LiveData<String> = bangkitRepository.upvoteReport(judul, uuid, vote)
 
 }
