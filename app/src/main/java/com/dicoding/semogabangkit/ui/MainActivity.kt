@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.mainPage.setOnClickListener(this)
         binding.formulirKeluhan.setOnClickListener(this)
-        binding.laporanUntukPemerintah.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -35,11 +34,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.formulir_keluhan -> {
                 val intent = Intent(this, FormActivity::class.java)
-                startActivity(intent)
-            }
-
-            R.id.laporan_untuk_pemerintah -> {
-                val intent = Intent(this, SummaryActivity::class.java)
                 startActivity(intent)
             }
         }

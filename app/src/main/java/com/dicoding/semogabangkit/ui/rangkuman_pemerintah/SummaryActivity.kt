@@ -1,7 +1,6 @@
 package com.dicoding.semogabangkit.ui.rangkuman_pemerintah
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -15,10 +14,8 @@ import com.anychart.enums.Position
 import com.anychart.enums.TooltipPositionMode
 import com.dicoding.semogabangkit.data.entity.ReportEntity
 import com.dicoding.semogabangkit.databinding.ActivitySummaryBinding
-import com.dicoding.semogabangkit.ui.main_page.MainPageViewModel
 import com.dicoding.semogabangkit.utils.Category
 import com.dicoding.semogabangkit.viewmodel.ViewModelFactory
-import com.google.android.material.snackbar.Snackbar
 
 
 class SummaryActivity : AppCompatActivity() {
@@ -48,12 +45,11 @@ class SummaryActivity : AppCompatActivity() {
             hideProgressBar()
             showChart()
         })
+    }
 
-        Log.d("SummaryCount", pembangunan.toString())
-        Log.d("SummaryCount", sosial.toString())
-        Log.d("SummaryCount", kesehatan.toString())
-        Log.d("SummaryCount", ekonomi.toString())
-        Log.d("SummaryCount", transportasi.toString())
+    override fun onResume() {
+        super.onResume()
+        supportActionBar?.title = "Aplikasi Untuk Pemerintah"
     }
 
     private fun showChart() {
@@ -98,7 +94,7 @@ class SummaryActivity : AppCompatActivity() {
         cartesian.interactivity().hoverMode(HoverMode.BY_X)
 
         cartesian.xAxis(0).title("Laporan").labels().fontSize(10)
-        cartesian.yAxis(0).title("Upvote")
+        cartesian.yAxis(0).title("Banyak Laporan")
 
         anyChartView.setChart(cartesian)
     }

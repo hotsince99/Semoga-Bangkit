@@ -9,6 +9,6 @@ interface BangkitDataSource {
 
     fun uploadReport(judul: String, deskripsi: String, encodedImage: String): LiveData<String>
 
-    fun upvoteReport(id: Int, uuid: String, votes: Boolean): LiveData<String>
+    fun upvoteReport(judul: String, uuid: String, votes: Boolean): LiveData<String>
 
 }

@@ -67,9 +67,9 @@ class RemoteDataSource {
         return
     }
 
-    fun upvoteReport(callback: UpvoteReportCallback, id: Int, uuid: String, votes: Boolean) {
+    fun upvoteReport(callback: UpvoteReportCallback, judul: String, uuid: String, votes: Boolean) {
 
-        val client = ApiConfig.getApiService().upvoteThisReport(id, uuid, votes)
+        val client = ApiConfig.getApiService().upvoteThisReport(judul, uuid, votes)
         client.enqueue(object : Callback<SuccessResponse> {
             override fun onResponse(call: Call<SuccessResponse>, response: Response<SuccessResponse>) {
                 if (response.isSuccessful) {

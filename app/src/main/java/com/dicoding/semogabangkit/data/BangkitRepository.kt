@@ -49,7 +49,7 @@ class BangkitRepository private constructor (private val remoteDataSource: Remot
         return result
     }
 
-    override fun upvoteReport(id: Int, uuid: String, votes: Boolean): LiveData<String> {
+    override fun upvoteReport(judul: String, uuid: String, votes: Boolean): LiveData<String> {
         val result = MutableLiveData<String>()
 
         remoteDataSource.upvoteReport(object : UpvoteReportCallback {
@@ -57,7 +57,7 @@ class BangkitRepository private constructor (private val remoteDataSource: Remot
                 result.postValue(successResponse.status)
             }
 
-        }, id, uuid, votes)
+        }, judul, uuid, votes)
         return result
     }
 

@@ -2,16 +2,18 @@ package com.dicoding.semogabangkit.ui.main_page
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.semogabangkit.R
 import com.dicoding.semogabangkit.data.entity.ReportEntity
 import com.dicoding.semogabangkit.databinding.ActivityMainPageBinding
 import com.dicoding.semogabangkit.ui.detail_laporan.ReportDetailActivity
 import com.dicoding.semogabangkit.ui.formulir_keluhan.FormActivity
-import com.dicoding.semogabangkit.utils.DummyReports
+import com.dicoding.semogabangkit.ui.rangkuman_pemerintah.SummaryActivity
 import com.dicoding.semogabangkit.viewmodel.ViewModelFactory
 
 class MainPageActivity : AppCompatActivity() {
@@ -39,10 +41,28 @@ class MainPageActivity : AppCompatActivity() {
             showRecyclerCardView(reports)
             hideProgressBar()
         })
-
-
-
     }
+
+    override fun onResume() {
+        super.onResume()
+        supportActionBar?.title = "Aplikasi Untuk Masyarakat"
+    }
+
+    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.btn_summary_activity -> {
+                val intent = Intent(this, SummaryActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }*/
 
     private fun showRecyclerCardView(reportList: List<ReportEntity>) {
         binding.rvReports.layoutManager = LinearLayoutManager(this)

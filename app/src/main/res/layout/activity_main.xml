@@ -26,12 +26,4 @@
         android:layout_height="wrap_content"
         android:text="Detail Laporan"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/laporan_untuk_pemerintah"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Laporan untuk Pemerintah"/>
-
-
-
 </androidx.appcompat.widget.LinearLayoutCompat>
